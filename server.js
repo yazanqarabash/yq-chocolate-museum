@@ -507,11 +507,6 @@ app.get("/users", (req, res) => {
   res.render("users", { title: "Users" });
 });
 
-app.get("/img/favicon.png", (req, res) => {
-  res.setHeader("Content-Type", "image/png");
-  res.sendFile(path.join(__dirname, "public", "img", "favicon.png"));
-});
-
 app.use((req, res, next) => {
   const err = new Error("Page Not Found");
   err.status = 404;
@@ -521,20 +516,10 @@ app.use((req, res, next) => {
 // ERROR HANDLER
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  // Set the default status code and message
   const status = err.status || 500;
   let message;
 
   switch (status) {
-    case 400:
-      message = "Bad Request: The server could not understand the request.";
-      break;
-    case 401:
-      message = "Unauthorized: Please log in to access this resource.";
-      break;
-    case 403:
-      message = "Forbidden: You do not have permission to access this page.";
-      break;
     case 404:
       message =
         "Page Not Found: The page you are looking for might have been removed or is temporarily unavailable.";
