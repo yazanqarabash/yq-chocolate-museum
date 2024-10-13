@@ -1,9 +1,9 @@
-<section class="px-10 py-8 text-cocoa text-center flex flex-col space-y-8">
-    <h1 class="text-4xl font-serif mb-12">Our Chocolates</h1>
+<section class="py-6 px-4 md:px-10 md:py-6 text-cocoa text-center flex flex-col space-y-8">
+    <h1 class="text-3xl md:text-4xl font-serif mb-4 md:mb-12">Our Chocolates</h1>
 
     <!-- Admin Add Chocolate -->
     {{#if session.isAdmin}}
-        <div class="text-right">
+        <div class="text-center md:text-right">
             <a
                     href="/chocolate/new"
                     class="bg-mocha text-white font-medium py-3 px-5 rounded-full hover:bg-wine transition-colors"
@@ -45,7 +45,7 @@
             {{/each}}
         </div>
 
-        <!-- Pagination -->
+        <!-- Pagination between 1 and table count -->
         <div class="mt-8 flex justify-center space-x-4">
             {{#each (range totalPages)}}
                 <a href="?page={{this}}" class="focus:outline-none focus:bg-wine py-2 px-4 rounded-full {{#ifEquals this ../currentPage}} bg-wine text-white {{else}} bg-beige text-caramel hover:bg-caramel hover:text-white {{/ifEquals}}">

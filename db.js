@@ -13,7 +13,7 @@ const db = new sqlite3.Database(
   "./database/chocolate-museum.sqlite3.db",
   (err) => {
     if (err) {
-      console.error("Error opening database:", err.message);
+      console.error(`Error opening database: ${err.message}`);
     } else {
       console.log("Connected to SQLite database");
     }
@@ -22,7 +22,7 @@ const db = new sqlite3.Database(
 
 function handleError(err) {
   if (err) {
-    console.error("SQL error:", err.message);
+    console.error(`SQL error: ${err.message}`);
   }
 }
 
@@ -208,16 +208,15 @@ db.serialize(() => {
 
   db.get("SELECT COUNT(*) AS count FROM users", (err, row) => {
     if (row.count === 0) {
-      const firstname = "Yazan";
-      const lastname = "Qarabash";
-      const username = "yazan";
+      const firstname = "Admin";
+      const lastname = "Admin";
+      const username = "Admin";
       const password = "admin123";
 
       bcrypt.hash(password, 12, (err, hash) => {
         if (err) {
-          console.log("Error hashing password:", err);
+          console.error(`Error hashing password: ${err.message}`);
         } else {
-          console.log("Hashed password:", hash);
           db.run(
             "INSERT INTO users (firstname, lastname, username, password) VALUES (?, ?, ?, ?)",
             [firstname, lastname, username, hash],

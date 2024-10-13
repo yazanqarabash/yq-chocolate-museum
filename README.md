@@ -1,8 +1,19 @@
 # Chocolate Museum – Web Development Project
 
-**OBS:** *This project is using browser-sync for live reloading, follow the scripts in ORDER!*
+Welcome to the Chocolate Museum project! This is a web application that allows users to explore a virtual museum of chocolates. It includes features like viewing chocolate collections, learning about their history, and more.
 
-## Available Scripts
+**Note:** *This project is using browser-sync for live reloading, follow the scripts in CASE of development changes in ORDER!* \
+**Note:** To test authentication: \
+username: Admin \
+password: admin123
+- - -
+
+
+## Setup Scripts
+
+
+Before running the project, make sure to install all dependencies by running:
+### `npm install`
 
 In the project directory, you should run:
 
@@ -15,7 +26,7 @@ See the section about tailwindcss [installation](https://tailwindcss.com/docs/in
 
 Runs the app using nodemon in the development mode. \
 Server runs on **localhost:3000**, but since we are using browser-sync it will use proxy mode. \
-The server will reload when you make changes.
+The server will reload when you make changes. \
 
 ### `npm run ui`
 

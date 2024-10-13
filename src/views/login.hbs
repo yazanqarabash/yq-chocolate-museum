@@ -1,6 +1,6 @@
-<section class="flex items-center justify-center">
+<section class="flex items-center justify-center py-6 px-4 md:px-10 md:py-6">
   <div
-    class="bg-white border border-gray-300 shadow-xl rounded-lg p-8 max-w-md w-full"
+    class="bg-white border border-gray-300 shadow-md md:shadow-xl md:rounded-lg p-8 max-w-lg w-full"
   >
     <h1 class="text-3xl font-serif text-cocoa mb-6 text-center">Log in</h1>
     <form action="/login" method="POST" id="form_login" class="space-y-4">
@@ -40,11 +40,6 @@
         class="mt-4 bg-wine text-white text-center px-4 py-2 rounded-lg flex items-center justify-center"
         role="alert"
       >
-        <svg class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            d="M9 3a1 1 0 012 0v7a1 1 0 11-2 0V3zM9 13a1 1 0 011-1h.01a1 1 0 01.99 1v.01a1 1 0 01-.99 1H10a1 1 0 01-1-1V13z"
-          />
-        </svg>
         <span>{{error}}</span>
       </div>
     {{/if}}

@@ -1,10 +1,14 @@
-<section class="container mx-auto px-8 py-12 text-center">
+<section class="py-6 px-4 md:px-10 md:py-6 text-center">
   <h1 class="text-4xl font-serif text-cocoa mb-4">Oops! Something went wrong.</h1>
 
-  <p class="text-lg text-mocha mb-6">{{message}}</p>
+  <p
+    class="text-lg text-mocha mb-6 antialiased tracking-wide leading-relaxed"
+  >{{message}}</p>
 
   {{#if status}}
-    <p class="text-base text-gray-700">Error Code: {{status}}</p>
+    <p
+      class="text-base text-gray-700 antialiased tracking-wide leading-relaxed mb-4"
+    >Error Code: {{status}}</p>
   {{/if}}
 
   <a

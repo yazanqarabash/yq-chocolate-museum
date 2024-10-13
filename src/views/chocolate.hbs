@@ -1,12 +1,11 @@
-<section class="px-10 py-8 space-y-8">
-    <div class="flex flex-col md:flex-row items-center md:items-start">
-        <!-- Base Chocolate Image -->
+<section class="py-6 px-4 md:px-10 md:py-6 space-y-4">
+    <div class="flex flex-col lg:flex-row items-center lg:items-start">
         <div class="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mb-6 md:mb-0">
-            <img src="/img/{{base_image}}" alt="{{name}}" class="border border-gray-300 shadow-xl rounded-lg p-10 w-full h-96 object-cover">
+            <img src="/img/{{base_image}}" alt="{{name}}"
+                 class="border border-gray-300 shadow-md rounded-lg p-10 w-full h-full object-cover">
         </div>
 
-        <!-- Chocolate Details -->
-        <div class="flex-1 md:ml-12 space-y-6 p-8">
+        <div class="flex-1 lg:ml-12 space-y-6 p-8">
             <h1 class="text-3xl font-serif text-cocoa">{{name}}</h1>
             <p class="antialiased tracking-wide leading-relaxed text-lg text-mocha">{{description}}</p>
 
@@ -14,36 +13,26 @@
                 <span class="font-bold">Cocoa Content:</span>
                 <span class="">{{cocoa_content}}%</span>
             </div>
-            <!-- History Section -->
-                <h2 class="text-3xl font-serif text-cocoa mb-4">History</h2>
-                <p class="antialiased tracking-wide text-mocha text-lg leading-relaxed">{{history}}</p>
+            <h2 class="text-3xl font-serif text-cocoa mb-4">History</h2>
+            <p class="antialiased tracking-wide text-mocha text-lg leading-relaxed">{{history}}</p>
         </div>
     </div>
 
-
-    <!-- All Images -->
     {{#if images}}
-        <div class="mt-12">
+        <div class="p-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {{#each images}}
-                    <img src="/img/{{this}}" alt="{{../name}} image" class="border border-gray-300 shadow-xl rounded-lg p-10 w-full h-48 object-cover">
+                    <img src="/img/{{this}}" alt="{{../name}} image"
+                         class="border border-gray-300 shadow-md rounded-lg p-10 w-full h-48 object-cover">
                 {{/each}}
             </div>
         </div>
     {{/if}}
 
-    <!-- Back to list -->
-    <div class="mt-12 text-center">
-        <a href="/chocolates" class="text-caramel focus:outline-none focus:text-wine font-semibold hover:text-wine transition-colors">
+    <div class="text-center">
+        <a href="/chocolates"
+           class="text-caramel focus:outline-none focus:text-wine font-semibold hover:text-wine transition-colors">
             &larr; Back to chocolates
         </a>
     </div>
-
-    <!-- Error Message -->
-    {{#if error}}
-        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mt-8 rounded-lg" role="alert">
-            <strong class="font-bold">Error:</strong>
-            <span>{{error}}</span>
-        </div>
-    {{/if}}
 </section>

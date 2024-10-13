@@ -7,7 +7,7 @@ function addContact(name, email, message) {
       [name, email, message],
       (err) => {
         if (err) {
-          console.error("Error saving message:", err);
+          console.error(`Error saving message: ${err.message}`);
           reject(err);
         } else {
           resolve();

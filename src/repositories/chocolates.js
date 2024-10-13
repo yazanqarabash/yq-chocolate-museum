@@ -22,7 +22,7 @@ function getChocolates(offset, limit) {
       [limit, offset],
       (err, rows) => {
         if (err) {
-          console.error("Error retrieving chocolates:", err);
+          console.error(`Error retrieving chocolates: ${err.message}`);
           reject(err);
         } else {
           resolve(rows);
@@ -44,7 +44,7 @@ function getChocolateById(id) {
   return new Promise((resolve, reject) => {
     db.get(query, [id], (err, row) => {
       if (err) {
-        console.error(`Error retrieving chocolate with id ${id}:`, err);
+        console.error(`Error retrieving chocolate with id ${id}:`, err.message);
         reject(err);
       } else {
         resolve(row);
@@ -60,7 +60,7 @@ function addChocolate(name, description, cocoa_content, base_image, history) {
       [name, description, cocoa_content, base_image, history],
       (err) => {
         if (err) {
-          console.error("Error adding chocolate:", err);
+          console.error(`Error adding chocolate: ${err.message}`);
           reject(err);
         } else {
           resolve();
@@ -84,7 +84,7 @@ function editChocolate(
       [name, description, cocoa_content, base_image, history, id],
       (err) => {
         if (err) {
-          console.error("Error editing chocolate:", err);
+          console.error(`Error editing chocolate: ${err.message}`);
           reject(err);
         } else {
           resolve();
@@ -98,7 +98,7 @@ function deleteChocolate(id) {
   return new Promise((resolve, reject) => {
     db.run("DELETE FROM chocolates WHERE id = (?)", id, (err) => {
       if (err) {
-        console.error("Error deleting chocolate:", err);
+        console.error(`Error deleting chocolate: ${err.message}`);
         reject(err);
       } else {
         resolve();

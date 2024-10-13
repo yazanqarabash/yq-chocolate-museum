@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        marquee: "marquee 115s linear infinite",
+        marquee: "marquee 155s linear infinite",
       },
       keyframes: {
         marquee: {
@@ -22,7 +22,7 @@ module.exports = {
       fontFamily: {
         serif: ["Playfair Display", "serif"], // Headings – Playfair Display
         sans: ["Roboto", "sans-serif"], // Body Text – Roboto
-        pacifico: ["Pacifico", "cursive"], // Decorative Text – Pacifico
+        pacifico: ["Pacifico", "cursive"], // Logo Text – Pacifico
       },
     },
   },

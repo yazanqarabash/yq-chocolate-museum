@@ -1,8 +1,8 @@
 <header
-  class="flex items-center justify-between px-10 py-6 bg-transparent text-mocha border-b shadow-md shadow-mocha/25"
+  class="flex flex-col lg:flex-row items-center md:justify-between py-4 px-2 md:px-10 md:py-6 bg-transparent text-mocha border-b shadow-md shadow-mocha/25"
 >
   <!-- Navigation -->
-  <nav class="flex space-x-8 font-serif font-medium">
+  <nav class="flex space-x-8 font-serif font-medium mb-3">
     <a
       href="/chocolates"
       class="hover:text-caramel transition-colors rounded-full focus:outline-none focus:text-caramel"
@@ -15,7 +15,7 @@
       href="/contact"
       class="hover:text-caramel transition-colors rounded-full focus:outline-none focus:text-caramel"
     >Contact</a>
-    {{#if session.isLoggedIn}}
+    {{#if session.isAdmin}}
       <a
         href="/users"
         class="hover:text-caramel transition-colors rounded-full focus:outline-none focus:text-caramel"
@@ -24,19 +24,18 @@
   </nav>
 
   <!-- Logo -->
-  <div class="flex-1 text-center">
+  <div class="flex-1 text-center order-first md:order-2 mb-4">
     <a
       href="/"
-      class="text-4xl font-pacifico text-mocha hover:text-caramel rounded-full focus:outline-none focus:text-caramel transition-colors"
+      class="text-2xl md:text-4xl font-pacifico text-mocha hover:text-caramel rounded-full focus:outline-none focus:text-caramel transition-colors"
     >
       Chocolate Museum
     </a>
   </div>
 
   <!-- Login and Logout -->
-  <div class="flex items-center space-x-10">
+  <div class="flex items-center space-x-10 order-last">
     {{#if session.isLoggedIn}}
-      <!-- Logout Button with Welcome Text -->
       <span class="flex items-center space-x-6 font-serif font-medium">
         <span>Welcome, {{session.name}}</span>
         <a
@@ -48,17 +47,15 @@
         </a>
       </span>
     {{else}}
-      <!-- Login Button with Icon -->
       <a
         href="/login"
         aria-label="Login"
-        class="hover:text-caramel rounded-full focus:outline-none transition-colors focus:text-caramel flex items-center space-x-2"
+        class="hover:text-caramel rounded-full focus:outline-none transition-colors focus:text-caramel flex items-center md:space-x-2"
       >
-        <i class="fas fa-user h-7 w-7"></i>
+        <i class="fas fa-user h-6 w-7"></i>
         <span class="font-serif font-medium">Login</span>
       </a>
 
-      <!-- Register Button with Icon -->
       <a
         href="/register"
         aria-label="Register"

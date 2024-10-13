@@ -78,7 +78,12 @@ app.engine(
       repeat: function (n, options) {
         let result = "";
         for (let i = 0; i < n; i++) {
-          result += options.fn(i);
+          result += options.fn(this, {
+            data: {
+              ...options.data,
+              session: options.data.session,
+            },
+          });
         }
         return result;
       },
@@ -107,7 +112,7 @@ app.get("/chocolates", async (req, res, next) => {
 
     const chocolatesList = await chocolates.getChocolates(offset, limit);
     const model = {
-      error: "",
+      title: "Chocolates",
       chocolates: chocolatesList,
       currentPage,
       totalPages,
@@ -135,9 +140,9 @@ app.get("/chocolates/:id", async (req, res, next) => {
       : [];
 
     const model = {
+      title: chocolateItem.name,
       ...chocolateItem,
       images: imagesArray,
-      error: "",
     };
     return res.render("chocolate", model);
   } catch (err) {
@@ -149,7 +154,7 @@ app.get("/chocolates/:id", async (req, res, next) => {
 // NEW OR MODIFY CHOCOLATE PAGE (ADMIN)
 app.get("/chocolate/new", (req, res) => {
   if (req.session.isAdmin) {
-    return res.render("chocolate-new");
+    return res.render("chocolate-new", { title: "Add chocolate" });
   } else {
     return res.redirect("/");
   }
@@ -183,7 +188,7 @@ app.get("/chocolate/modify/:id", async (req, res, next) => {
   if (req.session.isAdmin) {
     try {
       const chocolateItem = await chocolates.getChocolateById(req.params.id);
-      const model = { ...chocolateItem };
+      const model = { title: "Modify chocolate", ...chocolateItem };
       return res.render("chocolate-new", model);
     } catch (err) {
       err.status = 500;
@@ -243,8 +248,8 @@ app.get("/users", async function (req, res, next) {
     try {
       const allUsers = await users.getUsers();
       const model = {
+        title: "Users",
         users: allUsers,
-        error: "",
       };
       return res.render("users", model);
     } catch (err) {
@@ -259,7 +264,7 @@ app.get("/users", async function (req, res, next) {
 // NEW OR MODIFY USER PAGE (ADMIN)
 app.get("/user/new", (req, res) => {
   if (req.session.isAdmin) {
-    return res.render("user-new");
+    return res.render("user-new", { title: "Add user" });
   } else {
     return res.redirect("/");
   }
@@ -287,7 +292,7 @@ app.get("/user/modify/:username", async (req, res, next) => {
   if (req.session.isAdmin) {
     try {
       const userItem = await users.getUserByUsername(req.params.username);
-      const model = { ...userItem };
+      const model = { title: "Modify user", ...userItem };
       return res.render("user-new", model);
     } catch (err) {
       err.status = 500;
@@ -348,6 +353,8 @@ app.post("/login", async function (req, res, next) {
     return res.redirect("/");
   } else {
     const { username, password } = req.body;
+    const adminUsername = process.env.ADMIN_USERNAME || "Admin";
+    const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
 
     if (!username || !password) {
       return res
@@ -356,10 +363,10 @@ app.post("/login", async function (req, res, next) {
     }
 
     try {
-      if (username === process.env.ADMIN_USERNAME) {
+      if (username === adminUsername) {
         const isAdminPasswordCorrect = await bcrypt.compare(
           password,
-          process.env.ADMIN_PASSWORD,
+          adminPassword,
         );
 
         if (!isAdminPasswordCorrect)
@@ -369,7 +376,7 @@ app.post("/login", async function (req, res, next) {
 
         req.session.isAdmin = true;
         req.session.isLoggedIn = true;
-        req.session.name = process.env.ADMIN_USERNAME;
+        req.session.name = adminUsername;
 
         console.log(`ADMIN SESSION SET: ${JSON.stringify(req.session)}`);
         return res.redirect("/");
@@ -414,12 +421,6 @@ app.post("/register", async (req, res, next) => {
   } else {
     const { firstname, lastname, username, password } = req.body;
 
-    if (!firstname || !lastname || !username || !password) {
-      return res.status(400).render("register", {
-        error: "All fields are required",
-      });
-    }
-
     try {
       const existingUser = await users.getUserByUsername(username);
 
@@ -436,7 +437,6 @@ app.post("/register", async (req, res, next) => {
       req.session.isLoggedIn = true;
       req.session.name = firstname;
 
-      console.log(`USER IS REGISTERED AND LOGGED IN`);
       console.log(`USER SESSION SET: ${JSON.stringify(req.session)}`);
       return res.redirect("/");
     } catch (err) {
@@ -451,7 +451,7 @@ app.get("/logout", (req, res) => {
   if (req.session.isLoggedIn) {
     return req.session.destroy((err) => {
       if (err) {
-        console.log(`Error while destroying the session ${err}`);
+        console.error(`Error while destroying the session ${err.message}`);
       } else {
         console.log("User logged out");
         res.redirect("/");
@@ -484,15 +484,9 @@ app.post("/contact", async (req, res, next) => {
   try {
     const { name, email, message } = req.body;
 
-    if (!name || !email || !message) {
-      const err = new Error("All fields are required.");
-      err.status = 400;
-      return next(err);
-    }
-
     await contacts.addContact(name, email, message);
 
-    const model = { error: "", message: "Thank you for your message." };
+    const model = { message: "Thank you for your message." };
     return res.render("contact", model);
   } catch (err) {
     err.status = 500;
@@ -504,11 +498,16 @@ app.get("/users", (req, res) => {
   res.render("users", { title: "Users" });
 });
 
-// TODO favicon
-/*app.get("/favicon.ico", (req, res) => {
-  res.setHeader("Content-Type", "image/svg+xml");
-  res.sendFile(path.join(__dirname, "public", "favicon.ico"));
-});*/
+app.get("/img/favicon.png", (req, res) => {
+  res.setHeader("Content-Type", "image/png");
+  res.sendFile(path.join(__dirname, "public", "img", "favicon.png"));
+});
+
+app.use((req, res, next) => {
+  const err = new Error("Page Not Found");
+  err.status = 404;
+  return next(err);
+});
 
 // ERROR HANDLER
 // eslint-disable-next-line no-unused-vars
