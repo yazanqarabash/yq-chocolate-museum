@@ -2,6 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=webstorm,node,dotenv
 
 .idea
+sessions-db.db
+chocolate-museum.sqlite3.db
 
 ### dotenv ###
 .env

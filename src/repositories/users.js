@@ -32,7 +32,7 @@ function getUserByUsername(username) {
 function addUser(firstname, lastname, username, hash) {
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INTO users (firstname, lastname, username, password) VALUES (?, s?, ?, ?)",
+      "INSERT INTO users (firstname, lastname, username, password) VALUES (?, ?, ?, ?)",
       [firstname, lastname, username, hash],
       (err) => {
         if (err) {

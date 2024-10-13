@@ -61,22 +61,30 @@
         </div>
     {{/unless}}
         <div class="flex justify-end space-x-4 text-white">
-            <a href="/users" class="bg-caramel py-2 px-4 rounded-lg cursor-pointer">
+            <a href="/users" class="bg-caramel py-2 px-4 rounded-lg cursor-pointer hover:bg-wine focus:outline-none focus:text-white transition-colors focus:bg-wine">
                 Cancel</a>
             {{#if username}}
                 <button
                         type="submit"
-                        class="bg-mocha py-2 px-4 rounded-lg hover:bg-wine"
+                        class="bg-mocha py-2 px-4 rounded-lg focus:outline-none focus:text-white focus:bg-wine transition-colors hover:bg-wine"
                 >Modify user
                 </button>
             {{else}}
                 <button
                         type="submit"
-                        class="bg-mocha py-2 px-4 rounded-lg hover:bg-wine"
+                        class="bg-mocha py-2 px-4 rounded-lg focus:outline-none focus:text-white focus:bg-wine transition-colors hover:bg-wine"
                 >Create new user
                 </button>
             {{/if}}
         </div>
     </form>
+        {{#if error}}
+            <div
+                    class="mt-4 bg-wine text-white text-center px-4 py-2 rounded-lg flex items-center justify-center"
+                    role="alert"
+            >
+                <span>{{error}}</span>
+            </div>
+        {{/if}}
     </div>
 </section>

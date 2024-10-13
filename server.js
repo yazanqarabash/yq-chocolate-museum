@@ -275,6 +275,15 @@ app.post("/user/new", async (req, res, next) => {
   if (req.session.isAdmin) {
     try {
       const { firstname, lastname, username, password } = req.body;
+
+      const existingUser = await users.getUserByUsername(username);
+
+      if (existingUser) {
+        return res.status(400).render("user-new", {
+          error: "Username already exists in database",
+        });
+      }
+
       const hashedPassword = await bcrypt.hash(password, 12);
       await users.addUser(firstname, lastname, username, hashedPassword);
       return res.redirect("/users");
