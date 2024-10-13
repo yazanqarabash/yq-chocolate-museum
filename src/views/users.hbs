@@ -1,0 +1,61 @@
+<section class="px-10 py-8 text-cocoa text-center flex flex-col space-y-8">
+  <h1 class="text-4xl font-serif mb-12">User Management</h1>
+
+  <!-- Admin Add User -->
+  <div class="text-right">
+    <a
+      href="/user/new"
+      class="bg-mocha text-white font-medium py-3 px-5 rounded-full hover:bg-wine transition-colors"
+    >
+      + Add New User
+    </a>
+  </div>
+
+  <!-- Users List -->
+  {{#if users}}
+    <div class="overflow-x-auto shadow-lg rounded-lg border border-gray-200">
+      <table class="min-w-full bg-white divide-y divide-gray-200">
+        <thead class="bg-beige">
+          <tr>
+            <th
+              class="px-6 py-3 text-left text-xs font-bold text-caramel uppercase tracking-wider"
+            >Username</th>
+            <th
+              class="px-6 py-3 text-left text-xs font-bold text-caramel uppercase tracking-wider"
+            >First Name</th>
+            <th
+              class="px-6 py-3 text-left text-xs font-bold text-caramel uppercase tracking-wider"
+            >Last Name</th>
+            <th
+              class="px-6 py-3 text-left text-xs font-bold text-caramel uppercase tracking-wider"
+            >Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200 text-mocha">
+          {{#each users}}
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{username}}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{firstname}}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{lastname}}</td>
+              <td
+                class="px-6 py-4 whitespace-nowrap flex space-x-4 justify-center items-center"
+              >
+                <a
+                  href="/user/modify/{{username}}"
+                  class="bg-mocha text-white py-2 px-4 rounded-lg hover:bg-wine transition-colors"
+                >Edit</a>
+                <a
+                  href="/user/delete/{{id}}"
+                  class="bg-caramel text-white py-2 px-4 rounded-lg hover:bg-wine transition-colors"
+                >Delete</a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <p class="text-lg text-center text-mocha mt-6">No users available at the
+      moment.</p>
+  {{/if}}
+</section>

@@ -1,0 +1,42 @@
+{
+  "name": "tgwk12-project",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon -e handlebars",
+    "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css --watch",
+    "ui": "browser-sync start --proxy localhost:3000 --files=./src/**/*.{html,js,hbs}",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Project",
+    "Full-Stack",
+    "Node",
+    "Express",
+    "Handlebars"
+  ],
+  "author": "Yazan Qarabash",
+  "license": "ISC",
+  "description": "Chocolate Museum - a web development fundamentals full-stack project",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-sqlite3": "^0.9.15",
+    "express": "^4.21.0",
+    "express-handlebars": "^8.0.1",
+    "express-session": "^1.18.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "autoprefixer": "^10.4.20",
+    "browser-sync": "^3.0.3",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.12.0",
+    "globals": "^15.10.0",
+    "nodemon": "^3.1.7",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "prettier": "3.3.3",
+    "tailwindcss": "^3.4.13"
+  }
+}

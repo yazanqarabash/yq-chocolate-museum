@@ -1,0 +1,92 @@
+<section class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-cocoa">
+    <div class="bg-white p-6 rounded-lg w-1/3">
+        {{#if id}}
+            <h2 class="text-2xl font-bold mb-4">Modify Chocolate</h2>
+        {{else}}
+            <h2 class="text-2xl font-bold mb-4">Add New Chocolate</h2>
+        {{/if}}
+
+        {{#if id}}
+        <form action="/chocolate/modify/{{id}}" method="POST" class="space-y-4">
+        {{else}}
+        <form action="/chocolate/new" method="POST" class="space-y-4">
+        {{/if}}
+
+        <input type="hidden" {{#if id}} value="{{id}}" {{/if}} name="id">
+
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="name" class="block text-cocoa mb-2">Name</label>
+            <input
+                    type="text"
+                    name="name"
+                    id="name"
+                {{#if id}} value="{{name}}" {{/if}}
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required
+            />
+        </div>
+
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="description" class="block text-cocoa mb-2">Description</label>
+            <textarea
+                    name="description"
+                    id="description"
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required
+            >{{#if id}}{{description}}{{/if}}</textarea>
+        </div>
+
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="history" class="block text-cocoa mb-2">History</label>
+            <textarea
+                    name="history"
+                    id="history"
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required
+            >{{#if id}}{{history}}{{/if}}</textarea>
+        </div>
+
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="cocoa_content" class="block text-cocoa mb-2">Cocoa Content (%)</label>
+            <input
+                    type="number"
+                    name="cocoa_content"
+                    id="cocoa_content"
+                {{#if id}} value="{{cocoa_content}}" {{/if}}
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required
+            />
+        </div>
+
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="base_image" class="block text-cocoa mb-2">Base Image (URL)</label>
+            <input
+                    type="text"
+                    name="base_image"
+                    id="base_image"
+                {{#if id}} value="{{base_image}}" {{/if}}
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+            />
+        </div>
+
+        <div class="flex justify-end space-x-4 text-white">
+            <a href="/chocolates" class="bg-caramel py-2 px-4 rounded-lg cursor-pointer">
+                Cancel
+            </a>
+            {{#if id}}
+                <button
+                        type="submit"
+                        class="bg-mocha py-2 px-4 rounded-lg hover:bg-wine"
+                >Modify Chocolate
+                </button>
+            {{else}}
+                <button
+                        type="submit"
+                        class="bg-mocha py-2 px-4 rounded-lg hover:bg-wine"
+                >Create New Chocolate
+                </button>
+            {{/if}}
+        </div>
+    </form>
+    </div>
+</section>

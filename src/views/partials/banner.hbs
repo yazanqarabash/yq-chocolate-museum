@@ -1,0 +1,34 @@
+<aside
+  class="bg-cocoa text-white text-xs relative flex h-10 w-full items-center justify-center overflow-hidden"
+>
+  <div class="flex overflow-hidden p-2 gap-10">
+    {{#repeat 5}}
+      <div
+        class="flex shrink-0 justify-around gap-10 animate-marquee items-center"
+      >
+        {{#repeat 5}}
+          <p>WELCOME TO CHOCOLATE MUSEUM</p>
+          <span class="w-1 h-1 border rounded-full bg-current"></span>
+          {{#if session.isLoggedIn}}
+            <p>WELCOME | {{session.name}}</p>
+            <span class="w-1 h-1 border rounded-full bg-current"></span>
+          {{else}}
+            <p>
+              CHOCOLATE LOVER?
+              <a href="/login" tabindex="-1"><u>JOIN US</u></a>
+            </p>
+            <span class="w-1 h-1 border rounded-full bg-current"></span>
+          {{/if}}
+          <p>DISCOVER CHOCOLATE COLLECTIONS</p>
+          <span class="w-1 h-1 border rounded-full bg-current"></span>
+        {{/repeat}}
+      </div>
+    {{/repeat}}
+  </div>
+  <div
+    class="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-beige"
+  ></div>
+  <div
+    class="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-caramel"
+  ></div>
+</aside>

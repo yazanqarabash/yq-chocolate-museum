@@ -1,0 +1,81 @@
+<section
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-cocoa"
+>
+    <div class="bg-white p-6 rounded-lg w-1/3">
+        {{#if username}}
+            <h2 class="text-2xl font-bold mb-4">Modify User</h2>
+        {{else}}
+            <h2 class="text-2xl font-bold mb-4">Add New User</h2>
+        {{/if}}
+
+        {{#if username}}
+        <form action="/user/modify/{{username}}" method="POST" class="space-y-4">
+        {{else}}
+        <form action="/user/new" method="POST" class="space-y-4">
+        {{/if}}
+        <input type="hidden" {{#if username}} value="{{id}}" {{/if}} name="id">
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="username" class="block text-cocoa mb-2">Username</label>
+            <input
+                    type="text"
+                    name="username"
+                    id="username"
+                {{#if username}} value="{{username}}" {{/if}}
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required="required"
+            />
+        </div>
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="first_name" class="block text-cocoa mb-2">First Name</label>
+            <input
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                {{#if username}} value="{{firstname}}" {{/if}}
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required="required"
+            />
+        </div>
+            <div class="antialiased tracking-wide leading-relaxed">
+                <label for="last_name" class="block text-cocoa mb-2">Last Name</label>
+                <input
+                        type="text"
+                        name="lastname"
+                        id="lastname"
+                    {{#if username}} value="{{lastname}}" {{/if}}
+                        class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                        required="required"
+                />
+            </div>
+    {{#unless username}}
+        <div class="antialiased tracking-wide leading-relaxed">
+            <label for="password" class="block text-cocoa mb-2">Password</label>
+            <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-caramel"
+                    required="required"
+            />
+        </div>
+    {{/unless}}
+        <div class="flex justify-end space-x-4 text-white">
+            <a href="/users" class="bg-caramel py-2 px-4 rounded-lg cursor-pointer">
+                Cancel</a>
+            {{#if username}}
+                <button
+                        type="submit"
+                        class="bg-mocha py-2 px-4 rounded-lg hover:bg-wine"
+                >Modify user
+                </button>
+            {{else}}
+                <button
+                        type="submit"
+                        class="bg-mocha py-2 px-4 rounded-lg hover:bg-wine"
+                >Create new user
+                </button>
+            {{/if}}
+        </div>
+    </form>
+    </div>
+</section>
