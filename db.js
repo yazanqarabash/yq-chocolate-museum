@@ -9,16 +9,13 @@ const sqlite3 = require("sqlite3").verbose();
 // DATABASE CONNECTION
 //--------------------
 
-const db = new sqlite3.Database(
-  "./database/chocolate-museum.sqlite3.db",
-  (err) => {
-    if (err) {
-      console.error(`Error opening database: ${err.message}`);
-    } else {
-      console.log("Connected to SQLite database");
-    }
-  },
-);
+const db = new sqlite3.Database("./chocolate-museum.sqlite3.db", (err) => {
+  if (err) {
+    console.error(`Error opening database: ${err.message}`);
+  } else {
+    console.log("Connected to SQLite database");
+  }
+});
 
 function handleError(err) {
   if (err) {

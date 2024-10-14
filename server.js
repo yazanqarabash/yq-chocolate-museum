@@ -415,7 +415,9 @@ app.post("/login", async function (req, res, next) {
   } else {
     const { username, password } = req.body;
     const adminUsername = process.env.ADMIN_USERNAME || "Admin";
-    const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
+    const adminPassword =
+      process.env.ADMIN_PASSWORD ||
+      "$2b$12$UnDcQArIPwkmqxqdSv0oDOGuGjBqL9ZCg6INQGix8zi1IhIgIV7j.";
 
     if (!username || !password) {
       return res
