@@ -21,8 +21,12 @@ Here is a taste of how the web application looks like: \
     <img src="https://github.com/user-attachments/assets/3520b05b-3b8a-463b-81f4-31528dbc9911" alt="Login Page" width="400" height="250"/>
     <img src="https://github.com/user-attachments/assets/15fe29ba-97ec-4e5a-bdbf-d16a6937fdf6" alt="Register Page" width="400" height="250"/>
   </div>
-  <img src="https://github.com/user-attachments/assets/de523866-81f2-47d6-b446-1c460cfda6ea" alt="Contact Page" width="400" height="250"/>
+  <div style="display: flex; flex-direction: column; gap: 25px;">
+    <img src="https://github.com/user-attachments/assets/de523866-81f2-47d6-b446-1c460cfda6ea" alt="Contact Page" width="400" height="250"/>
+    <img src="https://github.com/user-attachments/assets/c71d8d1b-2776-4a19-b84b-b8acf81fc182" alt="Users Page" width="400" height="250"/>
+  </div>
 </div>
+
 
 ## Setup Scripts
 
